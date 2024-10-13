@@ -1,0 +1,838 @@
+:root {
+    --primary-color: #8A2BE2;
+    --secondary-color: #4B0082;
+    --background-color: #1E1E1E;
+    --text-color: #FFFFFF;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 800px;
+    margin: 80px auto 0; /* Добавлен отступ сверху */
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 3em;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    background-color: var(--primary-color);
+}
+
+section {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+section.active {
+    display: block;
+}
+
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: var(--primary-color);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -17px;
+    background-color: var(--secondary-color);
+    border: 4px solid var(--primary-color);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+    animation: pulse 2s infinite;
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    left: 50%;
+}
+
+.left::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    right: 30px;
+    border: medium solid var(--primary-color);
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent var(--primary-color);
+}
+
+.right::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    left: 30px;
+    border: medium solid var(--primary-color);
+    border-width: 10px 10px 10px 0;
+    border-color: transparent var(--primary-color) transparent transparent;
+}
+
+.right::after {
+    left: -16px;
+}
+
+.timeline-content {
+    padding: 20px 30px;
+    background-color: var(--secondary-color);
+    position: relative;
+    border-radius: 6px;
+}
+
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Обновленная стилизация кнопок языка */
+.language-switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.language-icon {
+    width: 30px;
+    height: 20px;
+    padding: 0;
+    cursor: pointer;
+    background: none;
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.language-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.language-icon:hover {
+    transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Стили для вкладки Навыки */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.skill-item {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 120px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+}
+
+.skill-icon {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.skill-icon img {
+    width: 50px;
+    height: 50px;
+}
+
+/* Стили для вкладки Проекты */
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.project-card {
+    background-color: var(--secondary-color);
+    border-radius: 15px;
+    padding: 25px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--primary-color) 10%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.project-card:hover::before {
+    opacity: 0.1;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(138, 43, 226, 0.3);
+}
+
+/* Удалите или закомментируйте следующую анимацию */
+/*
+.project-card {
+    animation: fadeInUp 0.5s ease-out;
+    animation-fill-mode: both;
+}
+
+.project-card:nth-child(1) { animation-delay: 0.1s; }
+.project-card:nth-child(2) { animation-delay: 0.2s; }
+.project-card:nth-child(3) { animation-delay: 0.3s; }
+.project-card:nth-child(4) { animation-delay: 0.4s; }
+.project-card:nth-child(5) { animation-delay: 0.5s; }
+*/
+
+/* Остальные стили для проектов остаются без изменений */
+
+.project-icon {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.project-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 1.4em;
+}
+
+.project-card p {
+    color: #e0e0e0;
+    margin-bottom: 15px;
+}
+
+.project-details {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.project-details li {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #bbb;
+}
+
+.project-actions {
+    text-align: center;
+}
+
+.btn-project {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-project:hover {
+    background-color: #9932CC;
+    transform: scale(1.05);
+}
+
+/* Анимации для проектов */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.project-card {
+    animation: fadeInUp 0.5s ease-out;
+    animation-fill-mode: both;
+}
+
+.project-card:nth-child(1) { animation-delay: 0.1s; }
+.project-card:nth-child(2) { animation-delay: 0.2s; }
+.project-card:nth-child(3) { animation-delay: 0.3s; }
+.project-card:nth-child(4) { animation-delay: 0.4s; }
+.project-card:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.project-icon i {
+    animation: pulse 2s infinite;
+}
+
+/* Стили для вкладки Контакты */
+.contacts-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2em;
+}
+
+.contact-item i {
+    font-size: 1.5em;
+    color: var(--primary-color);
+}
+
+.contact-item a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: var(--primary-color);
+}
+
+/* Дополнительные анимации */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.skill-item:hover, .project-card:hover, .contact-item:hover {
+    animation: pulse 1s infinite;
+}
+
+/* Анимация для кружков в Инфо */
+.timeline-item::after {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(138, 43, 226, 0.7);
+    }
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(138, 43, 226, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(138, 43, 226, 0);
+    }
+}
+
+/* Стилизация текста в информации */
+.timeline-content p {
+    line-height: 1.6;
+    text-align: justify;
+    font-size: 0.9em;
+    color: #e0e0e0;
+}
+
+.timeline-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+/* Стилизация иконок языка */
+.language-switch {
+    display: flex;
+    gap: 10px;
+}
+
+.language-icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.language-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Анимация для текста lvd. */
+@keyframes glowing {
+    0% { text-shadow: 0 0 5px var(--primary-color); }
+    50% { text-shadow: 0 0 20px var(--primary-color), 0 0 30px var(--primary-color); }
+    100% { text-shadow: 0 0 5px var(--primary-color); }
+}
+
+h1 {
+    animation: glowing 3s infinite, fadeIn 1s ease-in-out;
+}
+
+/* Стилизация иконок в контактах */
+.contact-item i {
+    font-size: 1.5em;
+    color: var(--primary-color);
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.contact-item:hover i {
+    transform: scale(1.2);
+}
+
+/* Стили для логотипа */
+.logo {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Стили для header и логотипа */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--background-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Обновленные стили для container */
+.container {
+    max-width: 800px;
+    margin: 80px auto 0; /* Добавлен отступ сверху */
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Обновленные стили для language-switch */
+.language-switch {
+    display: flex;
+    gap: 10px;
+}
+
+/* ... (остальные существующие стили) ... */
+
+/* Удалите или закомментируйте старые стили для h1, если они больше не нужны */
+/*
+h1 {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 3em;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+*/
+
+/* ... (остальные существующие стили) ... */
+
+/* Обновленные стили для логотипа и текста "lvd." */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.logo-text {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--primary-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-text::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--background-color);
+    border-left: 2px solid var(--primary-color);
+    animation: typing 3s steps(4) infinite;
+}
+
+@keyframes typing {
+    from { width: 100%; }
+    to { width: 0; }
+}
+
+/* Эффект неоновой подсветки для текста "lvd." */
+.logo-text {
+    text-shadow: 
+        0 0 5px var(--primary-color),
+        0 0 10px var(--primary-color),
+        0 0 20px var(--primary-color),
+        0 0 40px var(--primary-color);
+    animation: neon 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neon {
+    from {
+        text-shadow: 
+            0 0 5px var(--primary-color),
+            0 0 10px var(--primary-color),
+            0 0 20px var(--primary-color),
+            0 0 40px var(--primary-color);
+    }
+    to {
+        text-shadow: 
+            0 0 10px var(--primary-color),
+            0 0 20px var(--primary-color),
+            0 0 40px var(--primary-color),
+            0 0 80px var(--primary-color);
+    }
+}
+
+/* Анимация для заголовков секций */
+h2 {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    transform: translateX(-100%);
+    animation: underline 2s ease-in-out infinite;
+}
+
+@keyframes underline {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(0); }
+}
+
+/* Анимация для элементов в секциях */
+.skill-item, .project-card, .contact-item {
+    opacity: 1; /* Изменено с 0 на 1 */
+    transform: translateY(0); /* Изменено с translateY(20px) на translateY(0) */
+    transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
+}
+
+section.active .skill-item,
+section.active .project-card,
+section.active .contact-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Задержка анимации для каждого элемента */
+section.active .skill-item:nth-child(1),
+section.active .project-card:nth-child(1),
+section.active .contact-item:nth-child(1) { transition-delay: 0.1s; }
+
+section.active .skill-item:nth-child(2),
+section.active .project-card:nth-child(2),
+section.active .contact-item:nth-child(2) { transition-delay: 0.2s; }
+
+section.active .skill-item:nth-child(3),
+section.active .project-card:nth-child(3),
+section.active .contact-item:nth-child(3) { transition-delay: 0.3s; }
+
+/* ... добавьте больше задержек, если нужно ... */
+
+/* Эффект подсветки для активной вкладки навигации */
+nav ul li a.active {
+    position: relative;
+    overflow: hidden;
+}
+
+nav ul li a.active::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--primary-color), transparent, var(--primary-color));
+    z-index: -1;
+    filter: blur(5px);
+    animation: glowingBorder 3s linear infinite;
+}
+
+@keyframes glowingBorder {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+/* Анимация для timeline */
+.timeline-item {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.timeline-item.right {
+    transform: translateX(50px);
+}
+
+section.active .timeline-item {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Задержка анимации для каждого элемента timeline */
+section.active .timeline-item:nth-child(1) { transition-delay: 0.1s; }
+section.active .timeline-item:nth-child(2) { transition-delay: 0.2s; }
+section.active .timeline-item:nth-child(3) { transition-delay: 0.3s; }
+/* ... добавьте больше задержек, если нужно ... */
+
+/* ... остальные существующие стили ... */
+
+/* Медиа-запросы для адаптивного дизайна */
+
+/* Планшеты */
+@media screen and (max-width: 768px) {
+    .container {
+        max-width: 90%;
+        margin: 60px auto 0;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+    }
+
+    nav ul li {
+        margin: 5px;
+    }
+
+    .skills-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .projects-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .timeline::after {
+        left: 31px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+
+    .timeline-item::before {
+        left: 60px;
+        border: medium solid var(--primary-color);
+        border-width: 10px 10px 10px 0;
+        border-color: transparent var(--primary-color) transparent transparent;
+    }
+
+    .left::after, .right::after {
+        left: 15px;
+    }
+
+    .right {
+        left: 0%;
+    }
+}
+
+/* Мобильные устройства */
+@media screen and (max-width: 480px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo-container {
+        margin-bottom: 10px;
+    }
+
+    .container {
+        margin-top: 120px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    .skills-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .projects-container {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline-content {
+        padding: 15px;
+    }
+
+    .contacts-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-item {
+        margin: 10px 0;
+    }
+}
+
+/* Дополнительные стили для улучшения читаемости на маленьких экранах */
+@media screen and (max-width: 320px) {
+    body {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .skill-item, .project-card, .contact-item {
+        padding: 15px;
+    }
+}
+
+/* ... остальные существующие стили ... */
